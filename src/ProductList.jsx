@@ -7,7 +7,7 @@ import CartItem from './CartItem';
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
-    const [addedToCart, setAddedToCart] = useState({});
+    const [addedToCart, setAddedToCart] = useState(false);
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.cart.items); 
 
@@ -293,7 +293,7 @@ const handlePlantsClick = (e) => {
                                 <div className="product-title">{plant.name}</div>
                                 <div className="product-description">{plant.description}</div>
                                 <div className="product-cost">{plant.cost}</div>
-                                <button className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                <button className={ addedToCart[plant.name] ? "product-button added-to-cart btn-disabled" : "product-button" } onClick={() => handleAddToCart(plant)}>Add to Cart</button>
                             </div>
                         ))}
                     </div>
